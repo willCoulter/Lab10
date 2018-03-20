@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Web615Lab6</title>
+    <title>Legit News</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +9,10 @@
   </head>
 
   <body>
+  <%= render 'shared/navbar' %>
+  <div id="container" class="container">
+
     <%= yield %>
+  </div>
   </body>
 </html>
