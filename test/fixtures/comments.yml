@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: comments
+#
+#  id         :integer          not null, primary key
+#  message    :text
+#  visible    :boolean          default(FALSE)
+#  article_id :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  message: MyText
+  visible: false
+
+two:
+  message: MyText
+  visible: false

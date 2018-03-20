@@ -9,6 +9,7 @@ gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'bootstrap_form', '~> 2.7'
+gem 'will_paginate'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use sqlite3 as the database for Active Record
@@ -52,6 +53,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'annotate'
   gem 'sqlite3'
+  gem 'rails-erd'
 end
 
 group :production do
