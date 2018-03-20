@@ -13,7 +13,7 @@ end
 chdir APP_ROOT do
   # This script is a starting point to setup your application.
   # Add necessary setup steps to this file.
-  system!('source $HOME/.rvm/scripts/rvm')
+  #system!('source $HOME/.rvm/scripts/rvm')
   system!('rvm install $(cat .ruby-version)')
   system!('rvm $(cat .ruby-version) do rvm gemset create $(cat .ruby-gemset)')
   system!('rvm gemset use $(cat .ruby-gemset)')
