@@ -20,6 +20,11 @@
           <strong>Category:</strong>
           <%= @article.category %>
         </p>
+
+        <p>
+          <strong>Author:</strong>
+          <%= link_to @article.user.email, @article.user %>
+        </p>
       </div>
 
       <div class="panel-footer">
@@ -40,6 +45,7 @@
       <table class="table table-hover">
         <thead>
         <tr>
+          <th>Author</th>
           <th>Comment</th>
           <th></th>
         </tr>
@@ -48,6 +54,7 @@
         <tbody>
         <% @article.comments.order(created_at: :desc).each do |comment| %>
           <tr>
+            <td><%= link_to comment.user.email, comment.user %></td>
             <td><%= comment.message %></td>
             <td><%= link_to 'Show', comment %></td>
           </tr>

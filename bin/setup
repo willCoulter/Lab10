@@ -16,6 +16,7 @@ chdir APP_ROOT do
   #system!('source $HOME/.rvm/scripts/rvm')
   system!('rvm install $(cat .ruby-version)')
   system!('rvm $(cat .ruby-version) do rvm gemset create $(cat .ruby-gemset)')
+  system!('rvm use $(cat .ruby-version)')
   system!('rvm gemset use $(cat .ruby-gemset)')
 
   system!('gem install rails')

@@ -20,6 +20,11 @@
           <strong>Article:</strong>
           <%= link_to @comment.article.title, @comment.article %>
         </p>
+
+        <p>
+          <strong>Author:</strong>
+          <%= link_to @comment.user.email, @comment.user %>
+        </p>
       </div>
 
       <div class="panel-footer">

@@ -5,6 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'devise' # https://github.com/plataformatec/devise#getting-started
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem 'bootstrap-sass'
 gem 'jquery-rails'
