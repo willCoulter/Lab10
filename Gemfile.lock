@@ -92,6 +92,7 @@ GEM
     ffi (1.9.23)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    honeybadger (3.3.0)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
     jbuilder (2.7.0)
@@ -115,6 +116,7 @@ GEM
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     multi_json (1.13.1)
+    newrelic_rpm (4.8.0.341)
     nio4r (2.3.0)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
@@ -235,9 +237,11 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   faker!
+  honeybadger (~> 3.1)
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
+  newrelic_rpm
   pg (~> 0.21)
   puma (~> 3.7)
   rack-tracker

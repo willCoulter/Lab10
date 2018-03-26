@@ -5,7 +5,10 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'newrelic_rpm'
 gem 'rack-tracker'
+gem 'honeybadger', '~> 3.1'
+
 gem 'devise' # https://github.com/plataformatec/devise#getting-started
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem 'bootstrap-sass'
