@@ -145,13 +145,47 @@ RSpec.describe "Articles", type: :request do
     end
 
     describe 'invalid: ' do
-      # Devise handles this so we skip
+      it 'should not update an article with invalid attributes' do
+        @article = FactoryBot.create(:article)
+        click_link 'Articles'
+        expect(current_path).to eq(articles_path)
+
+        expect(page).to have_content(@article.title)
+
+        click_link "Show"
+        expect(current_path).to eq(article_path(@article))
+
+        expect(page).to have_content(@article.title)
+        expect(page).to have_content(@article.content)
+        expect(page).to have_content(@article.user.email)
+
+        click_link "Edit"
+        expect(current_path).to eq(edit_article_path(@article))
+
+        fill_in 'article_title', with: ''
+        fill_in 'article_content', with: ''
+        click_button 'Update Article'
+
+        expect(page).to have_content("Title can't be blank")
+        expect(page).to have_content("Content can't be blank")
+        # save_and_open_page
+      end
     end
   end
 
   describe "DELETE #destroy" do
     describe 'valid: ' do
-      # Devise handles this so we skip
+      it 'should destroy an article when destroy is clicked' do
+        @article = FactoryBot.create(:article)
+        click_link 'Articles'
+        expect(current_path).to eq(articles_path)
+
+        expect(page).to have_content(@article.title)
+        click_link 'Destroy'
+
+        expect(current_path).to eq(articles_path)
+        expect(page).to have_content("Article was successfully destroyed.")
+      end
     end
   end
 end
