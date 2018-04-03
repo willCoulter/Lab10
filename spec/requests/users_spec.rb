@@ -42,7 +42,7 @@ RSpec.describe "Users", type: :request do
 
   describe 'GET #show' do
     describe 'valid: ' do
-      it 'should return a list of users' do
+      it 'should return a user' do
         click_link 'Users'
         expect(current_path).to eq(users_path)
 
