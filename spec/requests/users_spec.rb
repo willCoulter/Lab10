@@ -29,48 +29,68 @@ RSpec.describe "Users", type: :request do
       it 'should return a list of users' do
         click_link 'Users'
         expect(current_path).to eq(users_path)
-        save_and_open_page
+
+        expect(page).to have_content(@user.email)
+        # save_and_open_page
       end
     end
 
     describe 'invalid: ' do
-
+      # Since there's no real invalid version of this test we skip it
     end
   end
 
   describe 'GET #show' do
     describe 'valid: ' do
+      it 'should return a list of users' do
+        click_link 'Users'
+        expect(current_path).to eq(users_path)
 
+        expect(page).to have_content(@user.email)
+
+        click_link "user_show_#{@user.id}"
+        expect(page).to have_content(@user.email)
+        expect(page).to have_content(@user.current_sign_in_ip)
+        expect(page).to have_content(@user.last_sign_in_ip)
+        expect(page).to have_content(@user.current_sign_in_at)
+        expect(page).to have_content(@user.last_sign_in_at)
+        # save_and_open_page
+      end
     end
 
     describe 'invalid: ' do
-
+      it 'should not return a user if one does not exist' do
+        visit user_path(99999)
+        expect(current_path).to eq(users_path)
+        expect(page).to have_content("The user you're looking for cannot be found")
+        # save_and_open_page
+      end
     end
   end
 
   describe 'POST #create' do
     describe 'valid: ' do
-
+      # Devise handles this so we skip
     end
 
     describe 'invalid: ' do
-
+      # Devise handles this so we skip
     end
   end
 
   describe 'PUT #update' do
     describe 'valid: ' do
-
+      # Devise handles this so we skip
     end
 
     describe 'invalid: ' do
-
+      # Devise handles this so we skip
     end
   end
 
   describe "DELETE #destroy" do
     describe 'valid: ' do
-
+      # Devise handles this so we skip
     end
   end
 end

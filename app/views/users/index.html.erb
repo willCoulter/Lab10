@@ -18,7 +18,7 @@
         <% @users.each do |user| %>
           <tr>
             <td><%= user.email %></td>
-            <td><%= link_to 'Show', user %></td>
+            <td><%= link_to 'Show', user, id: "user_show_#{user.id}" %></td>
           </tr>
         <% end %>
         </tbody>
