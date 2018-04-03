@@ -111,7 +111,37 @@ RSpec.describe "Articles", type: :request do
 
   describe 'GET #edit' do
     describe 'valid: ' do
-      # Devise handles this so we skip
+      it 'should update an article with valid attributes' do
+        @article = FactoryBot.create(:article)
+        click_link 'Articles'
+        expect(current_path).to eq(articles_path)
+
+        expect(page).to have_content(@article.title)
+
+        click_link "Show"
+        expect(current_path).to eq(article_path(@article))
+
+        expect(page).to have_content(@article.title)
+        expect(page).to have_content(@article.content)
+        expect(page).to have_content(@article.user.email)
+
+        @new_user = FactoryBot.create(:user)
+
+        click_link "Edit"
+        expect(current_path).to eq(edit_article_path(@article))
+
+        fill_in 'article_title', with: 'Edited_Article_Title'
+        fill_in 'article_content', with: 'New_New_Article_Content'
+        select @new_user.email, from: 'article[user_id]'
+        click_button 'Update Article'
+
+        expect(page).to have_content('Article was successfully updated.')
+        expect(page).to have_content('Edited_Article_Title')
+        expect(page).to have_content('New_New_Article_Content')
+        expect(page).to have_content(@new_user.email)
+        expect(current_path).to eq(article_path(@article))
+        # save_and_open_page
+      end
     end
 
     describe 'invalid: ' do
