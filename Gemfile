@@ -5,9 +5,9 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# Statistics tracking
 gem 'newrelic_rpm'
 gem 'rack-tracker'
-gem 'honeybadger', '~> 3.1'
 
 gem 'devise' # https://github.com/plataformatec/devise#getting-started
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
@@ -44,7 +44,11 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  # Adds support for Capybara system testing and selenium driver
+
+
+  # Testing System
+  gem 'rspec-rails', '~> 3.7'
+  gem 'factory_bot'
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
 end
