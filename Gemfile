@@ -45,12 +45,17 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 
-
   # Testing System
   gem 'rspec-rails', '~> 3.7'
-  gem 'factory_bot'
+  gem 'factory_bot_rails'
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'launchy'
+end
+
+group :test do
+  gem 'database_cleaner'
+  gem 'simplecov', require: false
 end
 
 group :development do
@@ -63,6 +68,15 @@ group :development do
   gem 'annotate'
   gem 'sqlite3'
   gem 'rails-erd'
+
+  gem "better_errors" # Displays better errors
+  gem "binding_of_caller"
+
+  gem 'guard' # Watches for files to change
+  gem 'guard-rails', require: false # Rails bindings
+  gem 'guard-livereload', '~> 2.5', require: false # Sends reload command if a file changes
+  gem 'guard-rspec', require: false # Adds rspec bindings
+  gem 'leifcr-rack-livereload', require: 'rack-livereload' # adds live reload to the site
 end
 
 group :production do
