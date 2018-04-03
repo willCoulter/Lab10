@@ -68,7 +68,7 @@ RSpec.describe "Users", type: :request do
     end
   end
 
-  describe 'POST #create' do
+  describe 'GET #new' do
     describe 'valid: ' do
       # Devise handles this so we skip
     end
@@ -78,7 +78,7 @@ RSpec.describe "Users", type: :request do
     end
   end
 
-  describe 'PUT #update' do
+  describe 'GET #edit' do
     describe 'valid: ' do
       # Devise handles this so we skip
     end
