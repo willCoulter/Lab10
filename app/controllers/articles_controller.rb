@@ -9,6 +9,8 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :integer
+#  uuid       :string
+#  slug       :string
 #
 
 class ArticlesController < ApplicationController
@@ -18,11 +20,19 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
     @articles = Article.paginate(:page => params[:page], :per_page => params[:per_page] ||= 30).order(created_at: :desc)
+    respond_to do |format|
+      format.json {render json: Article.all}
+      format.html {}
+    end
   end
 
   # GET /articles/1
   # GET /articles/1.json
   def show
+    respond_to do |format|
+      format.json {render json: @article}
+      format.html {@article}
+    end
   end
 
   # GET /articles/new
@@ -77,12 +87,13 @@ class ArticlesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_article
-      @article = Article.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      flash[:alert] = "The article you're looking for cannot be found"
-      respond_to do |format|
-        format.html {redirect_to articles_path}
-        format.json {render json: nil, status: 404}
+      begin
+        @article = Article.friendly.find(params[:id])
+      rescue
+        respond_to do |format|
+          format.json {render status: 404, json: {alert: "The article you're looking for cannot be found"}}
+          format.html {redirect_to articles_path, alert: "The article you're looking for cannot be found"}
+        end
       end
     end
 

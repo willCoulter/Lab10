@@ -9,6 +9,8 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :integer
+#  uuid       :string
+#  slug       :string
 #
 
 class CommentsController < ApplicationController
@@ -18,11 +20,19 @@ class CommentsController < ApplicationController
   # GET /comments.json
   def index
     @comments = Comment.paginate(:page => params[:page], :per_page => params[:per_page] ||= 30).order(created_at: :desc)
+    respond_to do |format|
+      format.json {render json: Comment.all}
+      format.html {}
+    end
   end
 
   # GET /comments/1
   # GET /comments/1.json
   def show
+    respond_to do |format|
+      format.json {render json: @comment}
+      format.html {@comment}
+    end
   end
 
   # GET /comments/new
@@ -77,12 +87,13 @@ class CommentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_comment
-      @comment = Comment.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      flash[:alert] = "The comment you're looking for cannot be found"
-      respond_to do |format|
-        format.html {redirect_to comments_path}
-        format.json {render json: nil, status: 404}
+      begin
+        @comment = Comment.friendly.find(params[:id])
+      rescue
+        respond_to do |format|
+          format.json {render status: 404, json: {alert: "The comment you're looking for cannot be found"}}
+          format.html {redirect_to comments_path, alert: "The comment you're looking for cannot be found"}
+        end
       end
     end
 

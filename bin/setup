@@ -19,7 +19,7 @@ chdir APP_ROOT do
   system!('rvm use $(cat .ruby-version)')
   system!('rvm gemset use $(cat .ruby-gemset)')
 
-  system!('gem install rails')
+  system!('gem install rails -v 5.1')
 
   puts '== Installing dependencies =='
   system! 'gem install bundler --conservative'
@@ -39,6 +39,9 @@ chdir APP_ROOT do
 
   puts "\n== Removing old logs and tempfiles =="
   system! 'bin/rails log:clear tmp:clear'
+
+  puts "\n== Running Tests =="
+  system! 'bin/rake rspec'
 
   puts "\n== Restarting application server =="
   system! 'bin/rails restart'

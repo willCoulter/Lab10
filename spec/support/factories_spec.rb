@@ -1,5 +1,6 @@
 # SRC: https://github.com/thoughtbot/factory_bot/wiki/testing-all-factories-(with-rspec)
 # /spec/support/factories_spec.rb
+# :nocov:
 
 # If using RSpec 2.x (or if not using Rails), require `spec_helper` instead
 require 'rails_helper'
@@ -33,3 +34,4 @@ RSpec.describe "Factory Bot" do
     end
   end
 end
+# :nocov:
