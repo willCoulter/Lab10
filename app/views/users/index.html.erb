@@ -18,7 +18,9 @@
         <% @users.each do |user| %>
           <tr>
             <td><%= user.email %></td>
+            <% if policy(user).show? %>
             <td><%= link_to 'Show', user, id: "user_show_#{user.id}" %></td>
+              <% end %>
           </tr>
         <% end %>
         </tbody>

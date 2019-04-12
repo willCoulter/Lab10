@@ -17,6 +17,7 @@
 #  updated_at             :datetime         not null
 #  uuid                   :string
 #  slug                   :string
+#  roles                  :string           default("Non-Admin")
 #
 # Indexes
 #
@@ -25,9 +26,13 @@
 #
 
 FactoryBot.define do
+  factory :admin, class: User do
+    sequence(:email) { |n| Faker::Internet.safe_email("admin_user_#{n}") }
+    password "test1234"
+    roles 'Admin'
+  end
   factory :user, class: User do
     sequence(:email) { |n| Faker::Internet.safe_email("user_#{n}") }
     password "test1234"
-
   end
 end

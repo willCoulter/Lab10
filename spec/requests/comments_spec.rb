@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe "Comments", type: :request do
   before(:each) do
-    @user = FactoryBot.create(:user) # Create the user
+    @user = FactoryBot.create(:admin) # Create the user
     @article = FactoryBot.create(:article)
-
+    save_and_open_page
     # Set up the basic premise of the test by making sure that you have to log in
     visit root_path
     expect(current_path).to eq(new_user_session_path)

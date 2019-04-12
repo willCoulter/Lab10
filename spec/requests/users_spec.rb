@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Users", type: :request do
   before(:each) do
-    @user = FactoryBot.create(:user) # Create the user
+    @user = FactoryBot.create(:admin) # Create the user
 
     # Set up the basic premise of the test by making sure that you have to log in
     visit root_path
@@ -16,6 +16,7 @@ RSpec.describe "Users", type: :request do
       fill_in 'Email', with: @user.email
       fill_in 'Password', with: @user.password
       click_button 'Log in'
+      save_and_open_page
     end
 
     # Since we've logged in we should check if the application redirected us to the right path
@@ -24,6 +25,8 @@ RSpec.describe "Users", type: :request do
     expect(page).to have_content('Signed in successfully.')
   end
 
+
+
   describe 'GET #index' do
     describe 'valid: ' do
       it 'should return a list of users' do
@@ -31,7 +34,7 @@ RSpec.describe "Users", type: :request do
         expect(current_path).to eq(users_path)
 
         expect(page).to have_content(@user.email)
-        # save_and_open_page
+        #save_and_open_page
       end
     end
 

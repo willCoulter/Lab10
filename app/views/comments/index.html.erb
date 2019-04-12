@@ -18,17 +18,25 @@
         <% @comments.each do |comment| %>
           <tr>
             <td><%= comment.message %></td>
+            <% if policy(comment).show? %>
             <td><%= link_to 'Show', comment %></td>
+            <% end %>
+            <% if policy(comment).edit? %>
             <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
+            <% end %>
+            <% if policy(comment).destroy? %>
             <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
           </tr>
         <% end %>
         </tbody>
       </table>
 
       <div class="panel-footer">
+        <% if policy(Comment).new? %>
         <%= link_to 'New Comment', new_comment_path, class: 'btn btn-success' %>
         <%= page_entries_info @comments %>
+        <% end %>
       </div>
 
     </div>
