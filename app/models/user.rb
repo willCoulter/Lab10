@@ -36,4 +36,15 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  POSSIBLE_ROLES=['Admin','Non-Admin']
+
+  def is_admin?
+    if self.role == 'Admin'
+      true
+    else
+      false
+    end
+
+  end
 end

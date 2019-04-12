@@ -20,6 +20,7 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
+    authorize Article
     @articles = Article.paginate(:page => params[:page], :per_page => params[:per_page] ||= 30).order(created_at: :desc)
     respond_to do |format|
       format.json {render json: Article.all}
@@ -30,6 +31,7 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
+    authorize @article
     respond_to do |format|
       format.json {render json: @article}
       format.html {@article}

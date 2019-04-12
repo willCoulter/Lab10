@@ -20,6 +20,7 @@ class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.json
   def index
+    authorize Comment
     @comments = Comment.paginate(:page => params[:page], :per_page => params[:per_page] ||= 30).order(created_at: :desc)
     respond_to do |format|
       format.json {render json: Comment.all}
@@ -30,6 +31,7 @@ class CommentsController < ApplicationController
   # GET /comments/1
   # GET /comments/1.json
   def show
+    authorize @comment
     respond_to do |format|
       format.json {render json: @comment}
       format.html {@comment}
