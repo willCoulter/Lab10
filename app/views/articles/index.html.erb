@@ -33,7 +33,7 @@
       </table>
 
       <div class="panel-footer">
-        <% if policy(Article).show? %>
+        <% if policy(Article).new? %>
         <%= link_to 'New Article', new_article_path, class: 'btn btn-success' %>
         <% end %>
         <%= page_entries_info @articles %>

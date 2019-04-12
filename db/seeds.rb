@@ -2,6 +2,7 @@ def create_seed_user
   email = Faker::Internet.safe_email
   @user = User.find_or_create_by(email: email)
   @user.password = "test1234"
+  @user.roles ="Admin"
   if @user.save
     p "User #{email} created"
     return @user

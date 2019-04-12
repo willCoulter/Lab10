@@ -40,6 +40,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles/new
   def new
+    authorize Article;
     @article = Article.new
   end
 
@@ -92,6 +93,7 @@ class ArticlesController < ApplicationController
     def set_article
       begin
         @article = Article.friendly.find(params[:id])
+        authorize @article
       rescue
         respond_to do |format|
           format.json {render status: 404, json: {alert: "The article you're looking for cannot be found"}}
